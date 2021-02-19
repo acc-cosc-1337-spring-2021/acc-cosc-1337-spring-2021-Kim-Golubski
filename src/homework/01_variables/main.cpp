@@ -31,7 +31,7 @@ int main()
 	cout<<"Meal Amount: "<<meal_amount<<"\n";
 	cout<<"Sales Tax: "<<tax_amount<<"\n";
 	cout<<"Tip Amount:"<<tip_amount<<"\n";
-	cout<<"Toatl: "<<total<<"\n";
+	cout<<"Total: "<<total<<"\n";
 
 	return 0;
 }
