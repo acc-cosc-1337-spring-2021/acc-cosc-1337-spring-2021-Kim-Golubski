@@ -33,8 +33,12 @@ int main()
 		
 		do
 		{
-			cout<<"Choose 1-9 for your board position: ";
-			cin>>position;
+			do
+			{
+				cout<<"Choose 1-9 for your board position: ";
+				cin>>position;
+			}
+			while (!(position >=1 && position <=9));
 			game1.mark_board(position);
 			game1.display_board();
 		}

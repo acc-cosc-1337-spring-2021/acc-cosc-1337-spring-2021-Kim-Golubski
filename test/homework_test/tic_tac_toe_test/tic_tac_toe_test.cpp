@@ -68,7 +68,7 @@ TEST_CASE("Test check_column_win function in second column","verify game_over re
 
 	game5.mark_board(2);
 	REQUIRE(game5.game_over() == false);
-	game5.mark_board(2);
+	game5.mark_board(4);
 	REQUIRE(game5.game_over() == false);
 	game5.mark_board(5);
 	REQUIRE(game5.game_over() == false);

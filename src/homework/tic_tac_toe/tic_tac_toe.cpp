@@ -81,39 +81,51 @@ void TicTacToe::clear_board()
 bool  TicTacToe::check_column_win()
 {
     
-    if ((pegs[0] == pegs[3]) && (pegs[0] == pegs[6]) && (pegs[3] == pegs[6]) && (!(pegs[0] == " ")))
+    if (pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X")
     {
         return true;
     }
-    if ((pegs[1] == pegs[4]) && (pegs[1] == pegs[7]) && (pegs[4] == pegs[7]) && (!(pegs[1] == " ")))
+    else if (pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O")
     {
         return true;
     }
-    if ((pegs[2] == pegs[5]) && (pegs[2] == pegs[7]) && (pegs[5] == pegs[7]) && (!(pegs[2] == " ")))
+    else if (pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X")
     {
         return true;
     }
-    
+    else if (pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O")
+    {
+        return true;
+    }
+    else if (pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")
+    {
+        return true;
+    }
+    else if (pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O")
+    {
+        return true;
+    }
+
     return false;    
 }
 bool TicTacToe::check_row_win()
 {
     
-    if (pegs[0] == pegs[1] && pegs[1] == pegs[2])
+    if ((pegs[0] == pegs[1]) && (pegs[1] == pegs[2]))
     {
         if (pegs[0] != " ")
         {
             return true;
         }
     }
-    if (pegs[3] == pegs[4] && pegs[4] == pegs[5])
+    else if ((pegs[3] == pegs[4]) && (pegs[4] == pegs[5]))
     {
         if(pegs[3] != " ")
         {
             return true;
         }
     }
-    if (pegs[6] == pegs[7] && pegs[7] == pegs[8])
+    else if ((pegs[6] == pegs[7]) && (pegs[7] == pegs[8]))
     {
         if(pegs[6] != " ")
         {
@@ -124,19 +136,19 @@ bool TicTacToe::check_row_win()
 }
 bool TicTacToe::check_diagonal_win()
 {
-    if (pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X")
+    if ((pegs[0] == "X") && (pegs[4] == "X") && (pegs[8] == "X"))
     {
         return true;
     }
-    if (pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O")
+    else if ((pegs[0] == "O") && (pegs[4] == "O") && (pegs[8] == "O"))
     {
         return true;
     }
-    if (pegs[2] == "X" && pegs[4] == "X" && pegs[6] =="X")
+    else if ((pegs[2] == "X") && (pegs[4] == "X") && (pegs[6] =="X"))
     {
         return true;
     }
-    if (pegs[2] == "O" && pegs[4] == "O" && pegs[6] =="O")
+    else if ((pegs[2] == "O") && (pegs[4] == "O") && (pegs[6] =="O"))
     {
         return true;
     }
