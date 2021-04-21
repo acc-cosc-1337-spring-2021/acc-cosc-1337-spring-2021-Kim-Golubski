@@ -5,7 +5,7 @@ std::ostream& operator<<(std::ostream& out, const TicTacToeManager& manager)
 {
     for (auto& element:manager.games)
     {
-        out<<&element;
+        out<<*element<<"\n";
     }
     return out;
 }
