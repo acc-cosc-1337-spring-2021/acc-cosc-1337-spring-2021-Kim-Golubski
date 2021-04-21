@@ -1,22 +1,39 @@
 #include "tic_tac_toe.h"
 #include "tic_tac_toe_manager.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
 #include<iostream>
 using std::cout; using std::cin;
 
 int main() 
 {
-	TicTacToe game1;
+	unique_ptr<TicTacToe>game;
 	TicTacToeManager manage;
 	string letter;
-	int position;
 	char choice = 'y';
 	int X = 0;
 	int O = 0;
 	int Ties = 0;
+	int type;
 	
 
 	while (choice == 'y')
 	{	
+		do
+		{		
+			cout<<"Would you like to play TicTacToe 3 or TicTacToe 4? ";
+			cin>>type;
+			if (type == 3)
+			{
+				game = make_unique<TicTacToe3>();
+			}
+			else if (type == 4)
+			{
+				game = make_unique<TicTacToe4>();
+			}
+		}
+		while (!(type ==3 || type == 4));
+		
 		do
 		{
 			cout<<"Choese X or O: ";
@@ -32,40 +49,37 @@ int main()
 		} 
 		while (!(letter == "X" || letter == "O"));
 
-		game1.start_game(letter);
-
+		game->start_game(letter);
 		
 		do
 		{
 			
-			cin>>game1;
-			cout<<game1;
+			cin>>*game;
+			cout<<*game;
 		}
-		while (game1.game_over() == false);
+		while (game->game_over() == false);
 
 		
-		if (game1.get_winner() == "X")
+		if (game->get_winner() == "X")
 		{
 			X += 1;
 		}
-		else if (game1.get_winner() == "O")
+		else if (game->get_winner() == "O")
 		{
 			O += 1;
 		}
-		else if (game1.get_winner() == "C")
+		else if (game->get_winner() == "C")
 		{
 			Ties += 1;
 		}
 
-		cout<<"Game Over! "<<game1.get_winner()<<" is the winner! "<<"\n";		
-		manage.save_game(game1);
+		cout<<"Game Over! "<<game->get_winner()<<" is the winner! "<<"\n";		
+		manage.save_game(game);
 		manage.get_winner_total(O, X, Ties);	
 		cout<<"Enter Y to play again: ";
 		cin>>choice;
 		cout<<manage;
 	}
-	
-
-	
+		
 	return 0;
 }
