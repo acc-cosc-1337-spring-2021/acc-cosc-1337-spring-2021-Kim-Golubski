@@ -209,18 +209,6 @@ TEST_CASE("Test get_winner_total function with one X win,""verify x=1 o=0 t=0")
 	REQUIRE(game12->get_winner() == "X");
 
 	manage1.save_game(game12);
-	if (game12->get_winner() == "X")
-	{
-		x += 1;
-	}
-	else if (game12->get_winner() == "O")
-	{
-		o += 1;
-	}
-	else if (game12->get_winner() == "C")
-	{
-		t += 1;
-	}
 	manage1.get_winner_total(o,x,t);
 	REQUIRE(o==0);
 	REQUIRE(x==1);
@@ -249,18 +237,6 @@ TEST_CASE("Test get_winner_total function with one O win,""verify x=1 o=0 t=0")
 	REQUIRE(game13->get_winner() == "O");
 
 	manage2.save_game(game13);
-	if (game13->get_winner() == "X")
-	{
-		x += 1;
-	}
-	else if (game13->get_winner() == "O")
-	{
-		o += 1;
-	}
-	else if (game13->get_winner() == "C")
-	{
-		t += 1;
-	}
 	manage2.get_winner_total(o,x,t);
 	REQUIRE(o==1);
 	REQUIRE(x==0);
@@ -297,20 +273,258 @@ TEST_CASE("Test get_winner_total function with one Tie,""verify x=0 o=0 t=1")
 	REQUIRE(game14->get_winner() == "C");
 
 	manage3.save_game(game14);
-	if (game14->get_winner() == "X")
-	{
-		x += 1;
-	}
-	else if (game14->get_winner() == "O")
-	{
-		o += 1;
-	}
-	else if (game14->get_winner() == "C")
-	{
-		t += 1;
-	}
 	manage3.get_winner_total(o,x,t);
 	REQUIRE(o==0);
 	REQUIRE(x==0);
 	REQUIRE(t==1);
+}
+
+TEST_CASE("Test game over if 16 slots are selected")
+{
+	unique_ptr<TicTacToe> game15 = make_unique<TicTacToe4>();
+
+	game15->start_game("X");
+	game15->mark_board(1);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(4);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(5);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(8);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(9);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(12);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(16);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(13);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(2);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(3);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(7);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(6);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(10);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(11);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(15);
+	REQUIRE(game15->game_over() == false);
+	game15->mark_board(14);
+	REQUIRE(game15->game_over() == true);
+	REQUIRE(game15->get_winner() == "C");
+}
+TEST_CASE("Test check_column_win function in first column4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game17 = make_unique<TicTacToe4>();
+	
+	game17->start_game("X");
+	game17->mark_board(1);
+	REQUIRE(game17->game_over() == false);
+	game17->mark_board(6);
+	REQUIRE(game17->game_over() == false);
+	game17->mark_board(5);
+	REQUIRE(game17->game_over() == false);
+	game17->mark_board(7);
+	REQUIRE(game17->game_over() == false);
+	game17->mark_board(9);
+	REQUIRE(game17->game_over() == false);
+	game17->mark_board(8);
+	REQUIRE(game17->game_over() == false);
+	game17->mark_board(13);
+	REQUIRE(game17->game_over() == true);
+	REQUIRE(game17->get_winner() == "X");
+}
+TEST_CASE("Test check_column_win function in second column4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game18 = make_unique<TicTacToe4>();
+
+	game18->start_game("X");
+	game18->mark_board(2);
+	REQUIRE(game18->game_over() == false);
+	game18->mark_board(1);
+	REQUIRE(game18->game_over() == false);
+	game18->mark_board(6);
+	REQUIRE(game18->game_over() == false);
+	game18->mark_board(7);
+	REQUIRE(game18->game_over() == false);
+	game18->mark_board(10);
+	REQUIRE(game18->game_over() == false);
+	game18->mark_board(8);
+	REQUIRE(game18->game_over() == false);
+	game18->mark_board(14);
+	REQUIRE(game18->game_over() == true);
+	REQUIRE(game18->get_winner() == "X");
+}
+TEST_CASE("Test check_column_win function in third column4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game19 = make_unique<TicTacToe4>();
+
+	game19->start_game("X");
+	game19->mark_board(3);
+	REQUIRE(game19->game_over() == false);
+	game19->mark_board(1);
+	REQUIRE(game19->game_over() == false);
+	game19->mark_board(7);
+	REQUIRE(game19->game_over() == false);
+	game19->mark_board(5);
+	REQUIRE(game19->game_over() == false);
+	game19->mark_board(11);
+	REQUIRE(game19->game_over() == false);
+	game19->mark_board(9);
+	REQUIRE(game19->game_over() == false);
+	game19->mark_board(15);
+	REQUIRE(game19->game_over() == true);
+	REQUIRE(game19->get_winner() == "X");
+}
+TEST_CASE("Test check_column_win function in fourth column4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game20 = make_unique<TicTacToe4>();
+
+	game20->start_game("X");
+	game20->mark_board(4);
+	REQUIRE(game20->game_over() == false);
+	game20->mark_board(1);
+	REQUIRE(game20->game_over() == false);
+	game20->mark_board(8);
+	REQUIRE(game20->game_over() == false);
+	game20->mark_board(5);
+	REQUIRE(game20->game_over() == false);
+	game20->mark_board(12);
+	REQUIRE(game20->game_over() == false);
+	game20->mark_board(9);
+	REQUIRE(game20->game_over() == false);
+	game20->mark_board(16);
+	REQUIRE(game20->game_over() == true);
+	REQUIRE(game20->get_winner() == "X");
+}
+TEST_CASE("Test check_row_win function in first row4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game21 = make_unique<TicTacToe4>();
+
+	game21->start_game("X");
+	game21->mark_board(1);
+	REQUIRE(game21->game_over() == false);
+	game21->mark_board(13);
+	REQUIRE(game21->game_over() == false);
+	game21->mark_board(2);
+	REQUIRE(game21->game_over() == false);
+	game21->mark_board(14);
+	REQUIRE(game21->game_over() == false);
+	game21->mark_board(3);
+	REQUIRE(game21->game_over() == false);
+	game21->mark_board(15);
+	REQUIRE(game21->game_over() == false);
+	game21->mark_board(4);
+	REQUIRE(game21->game_over() == true);
+	REQUIRE(game21->get_winner() == "X");
+}
+TEST_CASE("Test check_row_win function in second row4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game22 = make_unique<TicTacToe4>();
+
+	game22->start_game("X");
+	game22->mark_board(5);
+	REQUIRE(game22->game_over() == false);
+	game22->mark_board(13);
+	REQUIRE(game22->game_over() == false);
+	game22->mark_board(6);
+	REQUIRE(game22->game_over() == false);
+	game22->mark_board(14);
+	REQUIRE(game22->game_over() == false);
+	game22->mark_board(7);
+	REQUIRE(game22->game_over() == false);
+	game22->mark_board(15);
+	REQUIRE(game22->game_over() == false);
+	game22->mark_board(8);
+	REQUIRE(game22->game_over() == true);
+	REQUIRE(game22->get_winner() == "X");
+}
+TEST_CASE("Test check_row_win function in thrid row4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game23 = make_unique<TicTacToe4>();
+
+	game23->start_game("X");
+	game23->mark_board(9);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(13);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(10);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(14);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(11);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(15);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(12);
+	REQUIRE(game23->game_over() == true);
+	REQUIRE(game23->get_winner() == "X");
+}
+TEST_CASE("Test check_row_win function in fourth row4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game23 = make_unique<TicTacToe4>();
+
+	game23->start_game("X");
+	game23->mark_board(13);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(1);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(14);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(2);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(15);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(3);
+	REQUIRE(game23->game_over() == false);
+	game23->mark_board(16);
+	REQUIRE(game23->game_over() == true);
+	REQUIRE(game23->get_winner() == "X");
+}
+TEST_CASE("Test check_diagaonal_win function from top left4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game24 = make_unique<TicTacToe4>();
+
+	game24->start_game("X");
+	game24->mark_board(1);
+	REQUIRE(game24->game_over() == false);
+	game24->mark_board(2);
+	REQUIRE(game24->game_over() == false);
+	game24->mark_board(6);
+	REQUIRE(game24->game_over() == false);
+	game24->mark_board(5);
+	REQUIRE(game24->game_over() == false);
+	game24->mark_board(11);
+	REQUIRE(game24->game_over() == false);
+	game24->mark_board(7);
+	REQUIRE(game24->game_over() == false);
+	game24->mark_board(16);
+	REQUIRE(game24->game_over() == true);
+	REQUIRE(game24->get_winner() == "X");
+}
+TEST_CASE("Test check_diagaonal_win function from bottom left4","verify game_over returns true")
+{
+	unique_ptr<TicTacToe> game25 = make_unique<TicTacToe4>();
+
+	game25->start_game("X");
+	game25->mark_board(4);
+	REQUIRE(game25->game_over() == false);
+	game25->mark_board(1);
+	REQUIRE(game25->game_over() == false);
+	game25->mark_board(7);
+	REQUIRE(game25->game_over() == false);
+	game25->mark_board(5);
+	REQUIRE(game25->game_over() == false);
+	game25->mark_board(10);
+	REQUIRE(game25->game_over() == false);
+	game25->mark_board(2);
+	REQUIRE(game25->game_over() == false);
+	game25->mark_board(13);
+	REQUIRE(game25->game_over() == true);
+	REQUIRE(game25->get_winner() == "X");
 }

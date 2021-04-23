@@ -60,26 +60,13 @@ int main()
 		while (game->game_over() == false);
 
 		
-		if (game->get_winner() == "X")
-		{
-			X += 1;
-		}
-		else if (game->get_winner() == "O")
-		{
-			O += 1;
-		}
-		else if (game->get_winner() == "C")
-		{
-			Ties += 1;
-		}
-
-		cout<<"Game Over! "<<game->get_winner()<<" is the winner! "<<"\n";		
-		manage.save_game(game);
+		cout<<"Game Over! "<<game->get_winner()<<" is the winner! "<<"\n";
+		manage.save_game(game);		
 		manage.get_winner_total(O, X, Ties);	
 		cout<<"Enter Y to play again: ";
 		cin>>choice;
-		cout<<manage;
 	}
+	cout<<"Here is your game summary:"<<"\n"<<manage;
 		
 	return 0;
 }

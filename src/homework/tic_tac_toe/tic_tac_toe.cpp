@@ -4,10 +4,27 @@
 std::istream& operator>>(std::istream& in, TicTacToe& game)
 {
     int position;
-    cout<<"Choose 1-9 for your board position: ";
-	in>>position;
-    game.mark_board(position);
-    return in;
+    if (game.pegs.size() == 9)
+    {
+        do
+        {
+            cout<<"Choose 1-9 for your board position: ";
+            in>>position;
+        } while (!(position >= 1 && position <= 9));
+        game.mark_board(position);
+        return in;
+    }
+    else if (game.pegs.size() == 16)
+    {
+        do
+        {
+            cout<<"Choose 1-16 for your board position: ";
+            in>>position;
+        } while (!(position >=1 && position <=16));        
+        game.mark_board(position);
+        return in;
+    }
+    
 }
 std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
 {

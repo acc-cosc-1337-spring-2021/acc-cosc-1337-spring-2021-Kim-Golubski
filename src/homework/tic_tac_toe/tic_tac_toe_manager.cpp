@@ -16,7 +16,10 @@ void TicTacToeManager::save_game(unique_ptr<TicTacToe> &b)
     games.push_back(std::move(b));
 }
 void TicTacToeManager::get_winner_total(int& o, int& x, int& t)
-{    
+{   
+    o = o_win;
+    x = x_win;
+    t = ties;
     cout<<"O wins: "<<o<<"\n";
     cout<<"X wins: "<<x<<"\n";
     cout<<"Ties: "<<t<<"\n";

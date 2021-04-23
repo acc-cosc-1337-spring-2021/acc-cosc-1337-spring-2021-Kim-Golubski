@@ -12,38 +12,40 @@ false
 */
 bool  TicTacToe4::check_column_win()
 {
-    
-    if ((pegs[0] == pegs[4]) && (pegs[4] == pegs[8]) && (pegs[8] == pegs[12]))
+    if (pegs[0]=="X" && pegs[4]=="X" && pegs[8]=="X" && pegs[12]=="X")
     {
-        if (pegs[0] != " ")
-        {
-            return true;
-        }
+        return true;
     }
-    else if ((pegs[1] == pegs[5]) && (pegs[5] == pegs[9]) && (pegs[9] == pegs[13]))
+    else if (pegs[0]=="O" && pegs[4]=="O" && pegs[8]=="O" && pegs[12]=="O")
     {
-        if (pegs[1] != " ")
-        {
-            return true;
-        }
+        return true;
     }
-    else if ((pegs[2] == pegs[6]) && (pegs[6] == pegs[10]) && (pegs[10] == pegs[14]))
+    else if (pegs[1]=="X" && pegs[5]=="X" && pegs[9]=="X" && pegs[13]=="X")
     {
-        if (pegs[2] != " ")
-        {
-            return true;
-        }
+        return true;
     }
-    else if ((pegs[3] == pegs[7]) && (pegs[7] == pegs[11]) && (pegs[11] == pegs[15]))
+    else if (pegs[1]=="O" && pegs[5]=="O" && pegs[9]=="O" && pegs[13]=="O")
     {
-        if (pegs[3] != " ")
-        {
-            return true;
-        }
+        return true;
     }
-    return false;    
+    else if (pegs[2]=="X" && pegs[6]=="X" && pegs[10]=="X" && pegs[14]=="X")
+    {
+        return true;
+    }
+    else if (pegs[2]=="O" && pegs[6]=="O" && pegs[10]=="O" && pegs[14]=="O")
+    {
+        return true;
+    }
+    else if (pegs[3]=="X" && pegs[7]=="X" && pegs[11]=="X" && pegs[15]=="X")
+    {
+        return true;
+    }
+    else if (pegs[3]=="O" && pegs[7]=="O" && pegs[11]=="O" && pegs[15]=="O")
+    {
+        return true;
+    }
+    return false;
 }
-
 
 
 /*
@@ -57,6 +59,7 @@ Win by row if
 bool TicTacToe4::check_row_win()
 {
     
+    
     if ((pegs[0] == pegs[1]) && (pegs[1] == pegs[2]) && (pegs[2] == pegs[3]))
     {
         if (pegs[0] != " ")
@@ -66,7 +69,7 @@ bool TicTacToe4::check_row_win()
     }
     else if ((pegs[4] == pegs[5]) && (pegs[5] == pegs[6]) && (pegs[6] == pegs[7]))
     {
-        if (pegs[4] != " ")
+        if (pegs[4] == " ")
         {
             return true;
         }
