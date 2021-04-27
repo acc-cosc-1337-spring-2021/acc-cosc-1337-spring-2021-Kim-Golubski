@@ -28,9 +28,6 @@ void TicTacToeManager::get_winner_total(int& o, int& x, int& t)
 
 void TicTacToeManager::update_winner_count(string winner)
 {
-    x_win = 0;
-    o_win = 0;
-    ties = 0;
     if (winner == "X")
     {
         x_win +=1;
