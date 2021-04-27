@@ -7,6 +7,9 @@ std::ostream& operator<<(std::ostream& out, const TicTacToeManager& manager)
     {
         out<<*element<<"\n";
     }
+    out<<"O wins: "<<manager.o_win<<"\n";
+    out<<"X wins: "<<manager.x_win<<"\n";
+    out<<"Ties: "<<manager.ties<<"\n";
     return out;
 }
 
@@ -20,9 +23,6 @@ void TicTacToeManager::get_winner_total(int& o, int& x, int& t)
     o = o_win;
     x = x_win;
     t = ties;
-    cout<<"O wins: "<<o<<"\n";
-    cout<<"X wins: "<<x<<"\n";
-    cout<<"Ties: "<<t<<"\n";
 }
 
 
@@ -41,6 +41,6 @@ void TicTacToeManager::update_winner_count(string winner)
     }
     else if (winner == "C")
     {
-        ties =+1;
+        ties +=1;
     }
 }
