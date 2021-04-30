@@ -94,6 +94,10 @@ string TicTacToe::get_winner()
 {
     return winner;
 }
+vector<string> TicTacToe::get_pegs()const
+{
+    return pegs;
+}
 
 
 void TicTacToe::set_next_player()
